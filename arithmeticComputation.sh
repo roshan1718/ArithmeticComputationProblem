@@ -3,49 +3,50 @@
 # @Description : Arithmatic Computation Problem
 # @Author :  Roshan Balkrushna Shinde
 # @Since : 18-03-2020 
-function input()
+
+declare -A storeResult
+storeResult=(["result1"]=0 ["result2"]=0 ["result3"]=0 ["result4"]=0 )
+
+function getInputs()
 {
-	read -p "Enter First Number" numberOne
-	read -p "Enter Second Number" numberTwo
-	read -p "Enter Third Number" numberThree
+read -p "Enter First Number" numberOne
+read -p "Enter Second Number" numberTwo
+read -p "Enter Third Number" numberThree
+
+firstEquation
+secondEquation
+thirdEquation
+fourthEquation
 }
 
 function firstEquation()
 {
-	#Expression a+b*c
-	input
+	# Expression a+b*c
 	firstEquationResult=$(( $numberOne + $numberTwo * $numberThree ))
-	echo "a+b*c result is ::"$firstEquationResult
+	storeResult[result1]=$firstEquationResult
 }
-#firstEquation
 
 function secondEquation()
 {
 	# Expression a*b+c
-	input
 	secondEquationResult=$(( $numberOne * $numberTwo + $numberThree ))
-  	echo "a*b+c result is ::"$secondEquationResult
+	storeResult[result2]=$secondEquationResult
 }
-#secondEquation
-
 
 function thirdEquation()
 {
 	# Expression c+a/b
-	input
 	thirdEquationResult=`expr "scale=3; $numberThree + $numberOne / $numberTwo "|bc`
-	echo "c+a/b result is ::"$thirdEquationResult
-
+	storeResult[result3]=$thirdEquationResult
 }
 #thirdEquation
 
 function fourthEquation()
 {
 	# Expression a%b+c
-	input
 	fourthEquationResult=$(($numberOne % $numberTwo + $numberThree ))
-	echo "a%b+C result is ::"$fourthEquationResult
-
+	storeResult[result4]=$fourthEquationResult
 }
-
-fourthEquation
+getInputs
+echo ${!storeResult[@]}
+echo ${storeResult[@]}
