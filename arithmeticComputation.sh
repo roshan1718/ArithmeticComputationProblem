@@ -26,4 +26,15 @@ function secondEquation()
 	secondEquationResult=$(( $numberOne * $numberTwo + $numberThree ))
   	echo "a*b+c result is ::"$secondEquationResult
 }
-secondEquation
+#secondEquation
+
+
+function thirdEquation()
+{
+	# Expression c+a/b
+	input
+	thirdEquationResult=`expr "scale=3; $numberThree + $numberOne / $numberTwo "|bc`
+	echo "c+a/b result is ::"$thirdEquationResult
+
+}
+thirdEquation
