@@ -17,4 +17,13 @@ function firstEquation()
 	firstEquationResult=$(( $numberOne + $numberTwo * $numberThree ))
 	echo "a+b*c result is ::"$firstEquationResult
 }
-firstEquation
+#firstEquation
+
+function secondEquation()
+{
+	# Expression a*b+c
+	input
+	secondEquationResult=$(( $numberOne * $numberTwo + $numberThree ))
+  	echo "a*b+c result is ::"$secondEquationResult
+}
+secondEquation
