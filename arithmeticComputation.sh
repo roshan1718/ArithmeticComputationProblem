@@ -3,7 +3,18 @@
 # @Description : Arithmatic Computation Problem
 # @Author :  Roshan Balkrushna Shinde
 # @Since : 18-03-2020 
+function input()
+{
+	read -p "Enter First Number" numberOne
+	read -p "Enter Second Number" numberTwo
+	read -p "Enter Third Number" numberThree
+}
 
-read -p "Enter First Number" firstNumber
-read -p "Enter Second Number" secondNumber
-read -p "Enter Third Number" thirdNumber
+function firstEquation()
+{
+	#Expression a+b*c
+	input
+	firstEquationResult=$(( $numberOne + $numberTwo * $numberThree ))
+	echo "a+b*c result is ::"$firstEquationResult
+}
+firstEquation
