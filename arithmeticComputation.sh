@@ -4,8 +4,7 @@
 # @Author :  Roshan Balkrushna Shinde
 # @Since : 18-03-2020 
 
-declare -A storeResult
-storeResult=(["result1"]=0 ["result2"]=0 ["result3"]=0 ["result4"]=0 )
+storeResult=(["1"]=0 ["2"]=0 ["3"]=0 ["4"]=0 )
 
 function getInputs()
 {
@@ -23,30 +22,44 @@ function firstEquation()
 {
 	# Expression a+b*c
 	firstEquationResult=$(( $numberOne + $numberTwo * $numberThree ))
-	storeResult[result1]=$firstEquationResult
+	storeResult[1]=$firstEquationResult
 }
 
 function secondEquation()
 {
 	# Expression a*b+c
 	secondEquationResult=$(( $numberOne * $numberTwo + $numberThree ))
-	storeResult[result2]=$secondEquationResult
+	storeResult[2]=$secondEquationResult
 }
 
 function thirdEquation()
 {
 	# Expression c+a/b
-	thirdEquationResult=`expr "scale=3; $numberThree + $numberOne / $numberTwo "|bc`
-	storeResult[result3]=$thirdEquationResult
+	thirdEquationResult=`expr "scale=2; $numberThree + $numberOne / $numberTwo "|bc`
+	storeResult[3]=$thirdEquationResult
 }
-#thirdEquation
 
 function fourthEquation()
 {
 	# Expression a%b+c
 	fourthEquationResult=$(($numberOne % $numberTwo + $numberThree ))
-	storeResult[result4]=$fourthEquationResult
+	storeResult[4]=$fourthEquationResult
+}
+
+
+function readValuesToArray()
+{
+	for ((index=0; index<=${#storeResult[@]}; index++ ))
+	do
+		arrayElements[index]=${storeResult[$index]}
+	done
 }
 getInputs
+readValuesToArray
+echo "-------------------------------"
+echo "Dictionary Element is::"
 echo ${!storeResult[@]}
 echo ${storeResult[@]}
+echo "-------------------------------"
+echo "Array Element is ::"${arrayElements[@]}
+echo "-------------------------------"
