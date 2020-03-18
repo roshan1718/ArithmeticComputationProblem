@@ -12,40 +12,26 @@ read -p "Enter First Number" numberOne
 read -p "Enter Second Number" numberTwo
 read -p "Enter Third Number" numberThree
 
-firstEquation
-secondEquation
-thirdEquation
-fourthEquation
+findResult
 }
 
-function firstEquation()
-{
-	# Expression a+b*c
-	firstEquationResult=$(( $numberOne + $numberTwo * $numberThree ))
+function findResult()
+{	# Expression a+b*c
+	firstEquationResult=`expr "scale=2; $numberOne + $numberTwo * $numberThree" | bc -l`
 	storeResult[1]=$firstEquationResult
-}
 
-function secondEquation()
-{
 	# Expression a*b+c
-	secondEquationResult=$(( $numberOne * $numberTwo + $numberThree ))
+	secondEquationResult=`expr "scale=2; $numberOne * $numberTwo + $numberThree " | bc -l`
 	storeResult[2]=$secondEquationResult
-}
 
-function thirdEquation()
-{
 	# Expression c+a/b
-	thirdEquationResult=`expr "scale=2; $numberThree + $numberOne / $numberTwo "|bc`
+	thirdEquationResult=`expr "scale=2; $numberThree + $numberOne / $numberTwo " | bc -l`
 	storeResult[3]=$thirdEquationResult
-}
 
-function fourthEquation()
-{
 	# Expression a%b+c
-	fourthEquationResult=$(($numberOne % $numberTwo + $numberThree ))
+	fourthEquationResult=`expr "scale=2; $numberOne % $numberTwo + $numberThree " | bc -l`
 	storeResult[4]=$fourthEquationResult
 }
-
 
 function readValuesToArray()
 {
@@ -53,13 +39,31 @@ function readValuesToArray()
 	do
 		arrayElements[index]=${storeResult[$index]}
 	done
+	echo "Array Element is ::"${arrayElements[@]}
 }
+
+
+
+function descendingSort()
+{
+	temp=0
+	for ((index=0; index<${#arrayElements[@]}; index++ ))
+	do
+		for ((counter=index+1; counter<${#arrayElements[@]}; counter++ ))
+		do
+			if [[ ${arrayElements[index]%.*} -lt ${arrayElements[counter]%.*} ]]
+			then
+				temp=${arrayElements[index]}
+				arrayElements[index]=${arrayElements[counter]}
+				arrayElements[counter]=$temp
+			fi
+		done
+	done
+	echo Array In Descending Order..${arrayElements[@]}
+}
+
+
+
 getInputs
 readValuesToArray
-echo "-------------------------------"
-echo "Dictionary Element is::"
-echo ${!storeResult[@]}
-echo ${storeResult[@]}
-echo "-------------------------------"
-echo "Array Element is ::"${arrayElements[@]}
-echo "-------------------------------"
+descendingSort
