@@ -37,4 +37,15 @@ function thirdEquation()
 	echo "c+a/b result is ::"$thirdEquationResult
 
 }
-thirdEquation
+#thirdEquation
+
+function fourthEquation()
+{
+	# Expression a%b+c
+	input
+	fourthEquationResult=$(($numberOne % $numberTwo + $numberThree ))
+	echo "a%b+C result is ::"$fourthEquationResult
+
+}
+
+fourthEquation
