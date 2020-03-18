@@ -63,7 +63,25 @@ function descendingSort()
 }
 
 
+function ascendingSort()
+{
+	temp=0
+	for ((index=0; index<${#arrayElements[@]}; index++ ))
+	do
+		for ((counter=index+1; counter<${#arrayElements[@]}; counter++ ))
+		do
+			if [[ ${arrayElements[index]%.*} -gt ${arrayElements[counter]%.*} ]]
+			then
+				temp=${arrayElements[index]}
+				arrayElements[index]=${arrayElements[counter]}
+				arrayElements[counter]=$temp
+			fi
+		done
+	done
+	echo Array In Ascending Order..${arrayElements[@]}
+}
 
 getInputs
 readValuesToArray
 descendingSort
+ascendingSort
